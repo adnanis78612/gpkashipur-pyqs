@@ -62,6 +62,10 @@ export default defineConfig({
 	integrations: [sitemap(), icon(), mdx()],
 
 	vite: {
-		cacheDir: "./cache/vite",
+	cacheDir: "./cache/vite",
+
+	css: {
+		postcss: "./postcss.config.cjs",
 	},
+},
 });

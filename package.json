@@ -16,6 +16,7 @@
 		"@iconify-json/simple-icons": "^1.2.83",
 		"@tabler/icons": "^3.44.0",
 		"@tailwindcss/forms": "^0.5.11",
+		"@tailwindcss/postcss": "^4.1.14",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.11",
 		"astro": "6.3.7",
@@ -28,8 +29,8 @@
 		"web-haptics": "^0.0.6"
 	},
 	"devDependencies": {
-	"@biomejs/biome": "2.4.15",
-	"vite": "^7.1.5"
+		"@biomejs/biome": "2.4.15",
+		"vite": "^7.1.5"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
