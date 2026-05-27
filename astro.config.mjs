@@ -1,16 +1,18 @@
-import { defineConfig, fontProviders, svgoOptimizer} from "astro/config";
+import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
-	site: "https://haldwani.gehu.in",
-	base: "/pyqs/",
+	site: "https://gpkashipur-pyqs.vercel.app",
+	base: "/",
 	trailingSlash: "always",
+
 	prefetch: {
 		defaultStrategy: "viewport",
 	},
+
 	fonts: [
 		{
 			provider: fontProviders.google(),
@@ -28,30 +30,41 @@ export default defineConfig({
 			cssVariable: "--font-noto-sans-mono",
 		},
 		{
-		provider: fontProviders.local(),
-		name: "Excalifont",
-		cssVariable: "--font-excalifont",
-		options:{
-			variants:[{
-				src: ["./src/assets/fonts/excalifont.woff2"],
-				weight: "normal",
-				style: "normal",
-			}]
-		}
-	}],
+			provider: fontProviders.local(),
+			name: "Excalifont",
+			cssVariable: "--font-excalifont",
+			options: {
+				variants: [
+					{
+						src: ["./src/assets/fonts/excalifont.woff2"],
+						weight: "normal",
+						style: "normal",
+					},
+				],
+			},
+		},
+	],
+
 	cacheDir: "./cache/astro",
-	compressHTML:true,
+
+	compressHTML: true,
+
 	experimental: {
 		clientPrerender: true,
+
 		svgOptimizer: svgoOptimizer(),
+
 		queuedRendering: {
 			poolSize: 10000,
 			enabled: true,
 		},
 	},
+
 	integrations: [sitemap(), icon(), mdx()],
+
 	vite: {
 		cacheDir: "./cache/vite",
+
 		plugins: [tailwindcss()],
 	},
 });
