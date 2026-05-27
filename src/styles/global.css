@@ -1,1 +1,12 @@
 @import "./starwind.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme inline {
+    --font-excalifont: var(--font-excalifont);
+    --font-mono: var(--font-noto-sans-mono);
+    --font-sans: var(--font-noto-sans);
+    --font-serif: var(--font-noto-serif);
+}
