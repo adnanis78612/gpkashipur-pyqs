@@ -5,7 +5,7 @@ import { Pyq } from "@/lib/pyqs";
 
 const fsEntryCollection = defineCollection({
 	loader: filesystemLoader({
-		root: "pyqs",
+		root: "./pyqs",
 		validators: {
 			file: {
 				".pdf": Pyq.validator,
