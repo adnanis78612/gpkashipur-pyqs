@@ -1,7 +1,6 @@
 # build output
 dist/
 
-pyqs
 cache
 
 # generated types
