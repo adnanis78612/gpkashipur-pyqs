@@ -79,7 +79,7 @@ Send me the pdf file on message.
 
 ### Via Github Issue
 
-[Github Repo](https://github.com/adnanis78612/pyqs)
+[Github Repo](https://github.com/adnanis78612/gpkashipur-pyqs)
 
 Only do this if you are familiar with github.
 
