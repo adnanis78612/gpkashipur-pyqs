@@ -1,6 +1,6 @@
 import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 
@@ -60,11 +60,9 @@ export default defineConfig({
 		},
 	},
 
-	integrations: [sitemap(), icon(), mdx()],
+	integrations: [tailwind(), sitemap(), icon(), mdx()],
 
 	vite: {
 		cacheDir: "./cache/vite",
-
-		plugins: [tailwindcss()],
 	},
 });
