@@ -1,0 +1,77 @@
+---
+import siteConfig from "@/configs/site.config";
+import { base } from "astro:config/server";
+import { addForwardSlashAndBaseUrl } from "@/utils/url";
+import Dropdown from "@/components/starwind/dropdown";
+import { Icon } from "astro-icon/components";
+import ThemeToggle from "@/components/starwind/theme-toggle/ThemeToggle.astro";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"header"> {}
+
+const { class: className, ...props } = Astro.props;
+---
+
+<header class:list={["border-b font-excalifont", className]} {...props}>
+	<div
+		class="h-full flex items-center justify-between max-w-7xl mx-auto px-10 py-2"
+	>
+		<div class="text-xl md:text-2xl font-bold">
+			<a href={base}>{siteConfig.site.title}</a>
+		</div>
+
+		<div class="flex flex-row items-center gap-4">
+			<nav class="hidden sm:flex flex-row gap-3">
+				{
+					siteConfig.header.links.map((link) => (
+						<a
+							href={
+								link.type === "external"
+									? link.url
+									: addForwardSlashAndBaseUrl(link.url)
+							}
+							target={
+								link.type === "external" ? "_blank" : "_self"
+							}
+						>
+							{link.name}
+						</a>
+					))
+				}
+			</nav>
+
+			<ThemeToggle
+				variant="default"
+				size="md"
+				transition:name="theme-toggle"
+			/>
+
+			<Dropdown.Root class="inline sm:hidden">
+				<Dropdown.Trigger class="flex items-center justify-center">
+					<Icon name="mdi:menu" class="w-5 h-full" />
+				</Dropdown.Trigger>
+				<Dropdown.Content align="end">
+					{
+						siteConfig.header.links.map((link) => (
+							<Dropdown.Item
+								as="a"
+								href={
+									link.type === "external"
+										? link.url
+										: addForwardSlashAndBaseUrl(link.url)
+								}
+								target={
+									link.type === "external"
+										? "_blank"
+										: "_self"
+								}
+							>
+								{link.name}
+							</Dropdown.Item>
+						))
+					}
+				</Dropdown.Content>
+			</Dropdown.Root>
+		</div>
+	</div>
+</header>

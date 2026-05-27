@@ -1,0 +1,21 @@
+---
+import Head, {
+	type Props as HeadProps,
+} from "@/components/partials/Head.astro";
+import "@/styles/global.css";
+
+export interface Props extends HeadProps {
+	bodyClass?: string;
+}
+
+const { bodyClass, ...props } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<Head {...props} />
+	</head>
+	<body class:list={["min-h-screen", bodyClass]}>
+		<slot />
+	</body>
+</html>

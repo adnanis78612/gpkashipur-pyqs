@@ -1,0 +1,121 @@
+---
+import siteConfig from "@/configs/site.config";
+import { addBaseUrl } from "@/utils/url";
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+import Fonts from "./Fonts.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	ogImageUrl?: URL;
+	ogImage?: ImageMetadata;
+	transition?: boolean;
+}
+
+export type { Props };
+
+const {
+	title: pageTitle,
+	description = siteConfig.site.description,
+	ogImage,
+	transition = true,
+} = Astro.props;
+
+const title = `${siteConfig.site.title}${pageTitle && ` | ${pageTitle}`}`;
+
+let {
+	ogImageUrl = new URL(addBaseUrl(siteConfig.site.logo), Astro.url.origin),
+} = Astro.props;
+
+if (ogImage) {
+	const image = await getImage({
+		src: ogImage,
+		format: "png",
+		fit: "contain",
+		width: 1000,
+		height: 1000,
+	});
+	ogImageUrl = new URL(image.src, Astro.url.origin);
+}
+---
+
+<meta charset="UTF-8" />
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="url" content={Astro.url.href} />
+<meta name="robots" content="index,follow" />
+<meta name="language" content="EN" />
+
+<link rel="sitemap" href={addBaseUrl("/sitemap-index.xml")} />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Open Graph -->
+
+<meta property="og:title" content={title} />
+<meta property="og:site_name" content={siteConfig.site.title} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url.href} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+
+<link rel="icon" href={addBaseUrl(siteConfig.site.favicon)} />
+
+{transition && <ClientRouter fallback="none" />}
+
+<script is:inline>
+	function initTheme() {
+		const colorTheme = localStorage.getItem("colorTheme");
+		if (!colorTheme) {
+			if (
+				window.matchMedia &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches
+			) {
+				document.documentElement.classList.add("dark");
+				localStorage.setItem("colorTheme", "dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+				localStorage.setItem("colorTheme", "light");
+			}
+		} else {
+			if (colorTheme === "dark") {
+				document.documentElement.classList.add("dark");
+			} else if (colorTheme === "light") {
+				document.documentElement.classList.remove("dark");
+			} else if (colorTheme === "system") {
+				const prefersDark = window.matchMedia(
+					"(prefers-color-scheme: dark)",
+				).matches;
+				document.documentElement.classList.toggle("dark", prefersDark);
+			}
+		}
+	}
+
+	// document.addEventListener("astro:after-swap", initTheme);
+	initTheme();
+
+	document.addEventListener("astro:before-swap", (event) => {
+		const colorTheme = localStorage.getItem("colorTheme");
+		event.newDocument.documentElement.classList.toggle(
+			"dark",
+			colorTheme === "dark",
+		);
+	});
+</script>
+
+<script>
+	import { haptics, defaultPatterns } from "@/lib/haptics";
+
+	document.addEventListener("astro:before-preparation", () => {
+		haptics.trigger(defaultPatterns.selection);
+	});
+</script>
+
+
+<Fonts />

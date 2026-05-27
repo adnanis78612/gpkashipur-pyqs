@@ -1,0 +1,51 @@
+---
+import PageLayout from "./PageLayout.astro";
+import { addForwardSlashAndBaseUrl } from "@/utils/url";
+import PathCrumbs from "@/components/widgets/explorer/PathCrumbs.astro";
+import { base } from "astro:config/server";
+import Separator from "@/components/starwind/separator";
+import EntryList from "@/components/widgets/explorer/EntryList.astro";
+import { render, type CollectionEntry } from "astro:content";
+import type { FsEntry } from "@/lib/content/schema";
+import HomePageBanner from "@/components/widgets/HomePageBanner.astro";
+import Prose from "@/components/partials/Prose.astro";
+import FinalPopup from "@/components/widgets/FinalPopup.astro";
+
+interface Props {
+	entry: CollectionEntry<"fs">;
+}
+
+const { entry } = Astro.props;
+
+const isHomePage = Astro.url.pathname === base;
+
+const path: string = addForwardSlashAndBaseUrl(entry.data.path);
+const pathList = path.split("/").filter((element) => element);
+
+let title: string = entry.data.name.toUpperCase();
+
+if (["MID", "END", "OTHERS"].includes(title) || title.includes("YEAR ")) {
+	title = pathList.splice(-2).join(" > ");
+} else if (["OLD"].includes(title) || title.includes("SEM ")) {
+	title = pathList.splice(-3).join(" > ");
+}
+
+const data = entry.data as FsEntry<"dir">;
+const { Content } = await render(entry);
+---
+
+<PageLayout title={title}>
+	<FinalPopup />
+
+	{isHomePage && <HomePageBanner />}
+
+	<PathCrumbs {path} back={!isHomePage} />
+
+	<Separator class="my-4" />
+
+	<EntryList entry={data} {path} {title} capitalize={isHomePage} />
+
+	<Prose class="my-10">
+		<Content />
+	</Prose>
+</PageLayout>

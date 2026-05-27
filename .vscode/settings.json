@@ -1,0 +1,16 @@
+{
+    "cSpell.words": [
+        "Bhimtal",
+        "Government Polytechnic Kashipur",
+        "Jalal",
+        "Lakshyajeet",
+        "pdfjs",
+        "starwind"
+    ],
+    "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        "ngClass",
+        ".*Class" 
+    ]
+}

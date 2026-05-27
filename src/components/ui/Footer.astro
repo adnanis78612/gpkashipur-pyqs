@@ -1,0 +1,59 @@
+---
+import siteConfig from "@/configs/site.config";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"footer"> {}
+
+const { class: className, ...props } = Astro.props;
+---
+
+<footer class:list={["border-t bg-muted", className]} {...props}>
+	<div class="h-full w-full max-w-7xl mx-auto p-10">
+
+		<div class="grid grid-cols-1 gap-4">
+
+			<div>
+				<p class="text-xl">
+					Maintained by
+					<span class="font-excalifont">
+						{siteConfig.footer.maintainer.name}
+					</span>
+				</p>
+
+				<p class="text-lg font-medium">
+					(
+					<span class="font-excalifont">
+						{siteConfig.footer.maintainer.designation}
+					</span>
+					)
+				</p>
+
+				<br />
+
+				<p class="text-muted-foreground">
+					{siteConfig.site.description}
+				</p>
+			</div>
+
+		</div>
+
+		<br />
+
+		<p class="w-full text-center">
+			Built with Astro
+		</p>
+
+		<p class="w-full text-center">
+			Last updated on
+			<span class="font-excalifont">
+				{
+					new Date().toLocaleString("en-IN", {
+						timeZone: siteConfig.site.timezone,
+					})
+				}
+			</span>
+			(IST)
+		</p>
+
+	</div>
+</footer>
