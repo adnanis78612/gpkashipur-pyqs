@@ -28,7 +28,8 @@
 		"web-haptics": "^0.0.6"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.15"
+	"@biomejs/biome": "2.4.15",
+	"vite": "^7.1.5"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
