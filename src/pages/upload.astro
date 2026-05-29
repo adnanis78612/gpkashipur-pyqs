@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Upload PYQ</title>
 </head>
 
@@ -11,51 +13,51 @@
 
 <h1>Upload PYQ PDF</h1>
 
-<form id="uploadForm">
+<form
+  id="uploadForm"
+  enctype="multipart/form-data"
+  style="display:flex;flex-direction:column;gap:15px;max-width:400px;"
+>
 
-  <p>Your Name</p>
   <input
     type="text"
     name="contributor"
+    placeholder="Your Name"
     required
-    style="width:300px;height:40px"
+    style="height:45px;padding:10px;"
   >
 
-  <p>Course</p>
   <input
     type="text"
     name="course"
+    placeholder="Course"
     required
-    style="width:300px;height:40px"
+    style="height:45px;padding:10px;"
   >
 
-  <p>Year</p>
   <input
     type="text"
     name="year"
+    placeholder="Year / Semester"
     required
-    style="width:300px;height:40px"
+    style="height:45px;padding:10px;"
   >
 
-  <p>Subject</p>
   <input
     type="text"
     name="subject"
+    placeholder="Subject"
     required
-    style="width:300px;height:40px"
+    style="height:45px;padding:10px;"
   >
-
-  <p>Exam Type</p>
 
   <select
     name="examType"
-    style="width:300px;height:40px"
+    style="height:45px;padding:10px;"
   >
-    <option>Mid Sem</option>
-    <option>End Sem</option>
+    <option value="Mid Sem">Mid Sem</option>
+    <option value="End Sem">End Sem</option>
   </select>
-
-  <p>Select PDF</p>
 
   <input
     type="file"
@@ -64,33 +66,57 @@
     required
   >
 
-  <br><br>
-
   <button
     type="submit"
-    style="padding:12px 30px;background:#4f46e5;color:white;border:none;border-radius:10px;"
+    style="
+      padding:14px;
+      background:#4f46e5;
+      color:white;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:16px;
+    "
   >
     Upload PDF
   </button>
 
 </form>
 
+<p id="message"></p>
+
 <script>
   const form = document.getElementById("uploadForm");
+  const message = document.getElementById("message");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    message.innerText = "Uploading...";
+
     const formData = new FormData(form);
 
-    const response = await fetch("/api/upload/", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const response = await fetch("/api/upload/", {
+        method: "POST",
+        body: formData,
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    alert(JSON.stringify(result));
+      if (result.success) {
+        message.innerText =
+          "✅ PDF uploaded successfully! Waiting for admin approval.";
+
+        form.reset();
+      } else {
+        message.innerText =
+          "❌ Upload failed: " + JSON.stringify(result.error);
+      }
+    } catch (err) {
+      message.innerText =
+        "❌ Something went wrong.";
+    }
   });
 </script>
 
