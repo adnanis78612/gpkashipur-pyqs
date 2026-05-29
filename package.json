@@ -20,7 +20,7 @@
 		"@tailwindcss/postcss": "^4.1.14",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.11",
-		"astro": "6.3.7",
+		"astro": "^6.4.2",
 		"astro-icon": "^1.1.5",
 		"sharp": "^0.34.5",
 		"tailwind-merge": "^3.6.0",
