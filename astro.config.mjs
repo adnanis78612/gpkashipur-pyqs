@@ -2,10 +2,19 @@ import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
+import node from "@astrojs/node";
 
 export default defineConfig({
 	site: "https://gpkashipur-pyqs.vercel.app",
+
+	output: "server",
+
+	adapter: node({
+		mode: "standalone",
+	}),
+
 	base: "/",
+
 	trailingSlash: "always",
 
 	prefetch: {
@@ -62,10 +71,6 @@ export default defineConfig({
 	integrations: [sitemap(), icon(), mdx()],
 
 	vite: {
-	cacheDir: "./cache/vite",
-
-	css: {
-		postcss: "./postcss.config.cjs",
+		cacheDir: "./cache/vite",
 	},
-},
 });

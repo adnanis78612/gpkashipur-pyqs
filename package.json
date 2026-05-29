@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@astrojs/mdx": "5.0.6",
+		"@astrojs/node": "^10.1.2",
 		"@astrojs/sitemap": "3.7.2",
 		"@embedpdf/snippet": "^2.14.3",
 		"@iconify-json/mdi": "^1.2.3",

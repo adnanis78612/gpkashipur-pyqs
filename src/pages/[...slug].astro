@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { getCollection } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
@@ -7,12 +9,13 @@ import type { CollectionEntry } from "astro:content";
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const entries = await getCollection("fs");
+
 	return entries.map((entry) => ({
 		params: {
 			slug: entry.data.path,
 		},
 		props: {
-			entry: entry,
+			entry,
 		},
 	}));
 };
@@ -24,5 +27,5 @@ interface Props {
 const { entry } = Astro.props;
 ---
 
-{entry.data.type === "dir" && <ExplorerLayout {entry} />}
-{entry.data.type === "file" && <FileLayout {entry} />}
+{entry && entry.data.type === "dir" && <ExplorerLayout {entry} />}
+{entry && entry.data.type === "file" && <FileLayout {entry} />}
