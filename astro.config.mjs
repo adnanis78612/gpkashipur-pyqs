@@ -2,16 +2,14 @@ import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
-import node from "@astrojs/node";
+import vercel from "@astrojs/vercel/serverless";
 
 export default defineConfig({
 	site: "https://gpkashipur-pyqs.vercel.app",
 
 	output: "server",
 
-	adapter: node({
-		mode: "standalone",
-	}),
+	adapter: vercel(),
 
 	base: "/",
 
