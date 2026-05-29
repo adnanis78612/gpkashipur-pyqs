@@ -1,0 +1,98 @@
+---
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload PYQ</title>
+</head>
+
+<body style="background:#0f172a;color:white;font-family:sans-serif;padding:40px;">
+
+<h1>Upload PYQ PDF</h1>
+
+<form id="uploadForm">
+
+  <p>Your Name</p>
+  <input
+    type="text"
+    name="contributor"
+    required
+    style="width:300px;height:40px"
+  >
+
+  <p>Course</p>
+  <input
+    type="text"
+    name="course"
+    required
+    style="width:300px;height:40px"
+  >
+
+  <p>Year</p>
+  <input
+    type="text"
+    name="year"
+    required
+    style="width:300px;height:40px"
+  >
+
+  <p>Subject</p>
+  <input
+    type="text"
+    name="subject"
+    required
+    style="width:300px;height:40px"
+  >
+
+  <p>Exam Type</p>
+
+  <select
+    name="examType"
+    style="width:300px;height:40px"
+  >
+    <option>Mid Sem</option>
+    <option>End Sem</option>
+  </select>
+
+  <p>Select PDF</p>
+
+  <input
+    type="file"
+    name="pdf"
+    accept=".pdf"
+    required
+  >
+
+  <br><br>
+
+  <button
+    type="submit"
+    style="padding:12px 30px;background:#4f46e5;color:white;border:none;border-radius:10px;"
+  >
+    Upload PDF
+  </button>
+
+</form>
+
+<script>
+  const form = document.getElementById("uploadForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const response = await fetch("/api/upload/", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    alert(JSON.stringify(result));
+  });
+</script>
+
+</body>
+</html>

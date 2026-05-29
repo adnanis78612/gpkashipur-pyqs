@@ -45,6 +45,20 @@ const { Content } = await render(entry);
 
 	<EntryList entry={data} {path} {title} capitalize={isHomePage} />
 
+	{
+		path.toLowerCase().includes("/end") ||
+		path.toLowerCase().includes("/mid") ? (
+			<div class="flex justify-center my-10">
+				<a
+					href="/upload/"
+					class="bg-white text-black px-6 py-3 rounded-xl text-lg font-semibold hover:scale-105 transition"
+				>
+					Upload PDF
+				</a>
+			</div>
+		) : null
+	}
+
 	<Prose class="my-10">
 		<Content />
 	</Prose>
