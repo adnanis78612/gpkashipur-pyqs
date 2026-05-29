@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Upload PYQ</title>
 </head>
@@ -85,14 +85,14 @@
 
 <p id="message"></p>
 
-<script>
+<script is:inline>
   const form = document.getElementById("uploadForm");
   const message = document.getElementById("message");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    message.innerText = "Uploading...";
+    message.innerText = "Uploading PDF...";
 
     const formData = new FormData(form);
 
@@ -111,11 +111,16 @@
         form.reset();
       } else {
         message.innerText =
-          "❌ Upload failed: " + JSON.stringify(result.error);
+          "❌ Upload failed";
+          
+        console.log(result);
       }
+
     } catch (err) {
+      console.log(err);
+
       message.innerText =
-        "❌ Something went wrong.";
+        "❌ Something went wrong";
     }
   });
 </script>
