@@ -15,9 +15,13 @@ const { class: className, ...props } = Astro.props;
 			<div>
 				<p class="text-xl">
 					Maintained by
-					<span class="font-excalifont">
+					<a
+						href="https://linkedin.com/in/adnanis78612"
+						target="_blank"
+						class="font-excalifont hover:underline"
+					>
 						{siteConfig.footer.maintainer.name}
-					</span>
+					</a>
 				</p>
 
 				<p class="text-lg font-medium">
@@ -27,6 +31,28 @@ const { class: className, ...props } = Astro.props;
 					</span>
 					)
 				</p>
+
+				<br />
+
+				<div class="flex gap-4 text-sm">
+
+					<a
+						href="https://linkedin.com/in/adnanis78612"
+						target="_blank"
+						class="hover:underline"
+					>
+						LinkedIn
+					</a>
+
+					<a
+						href="https://github.com/adnanis78612/gpkashipur-pyqs"
+						target="_blank"
+						class="hover:underline"
+					>
+						GitHub Repo
+					</a>
+
+				</div>
 
 				<br />
 

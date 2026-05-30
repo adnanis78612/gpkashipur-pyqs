@@ -74,8 +74,8 @@ Note:
 
 Send me the pdf file on message.
 
-
-- [email](mailto:adnanis78612@gmail.com)
+- [LinkedIn](https://linkedin.com/in/adnanis78612)
+- [Email](mailto:adnanis78612@gmail.com)
 
 ### Via Github Issue
 

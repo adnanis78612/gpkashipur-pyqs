@@ -2,15 +2,15 @@ import { defineCollection } from "astro:content";
 import { filesystemLoader } from "@/lib/content/loader";
 import { Pyq } from "@/lib/pyqs";
 
-
 const fsEntryCollection = defineCollection({
 	loader: filesystemLoader({
-		root: "./pyqs",
+		root: "./public/pyqs",
+
 		validators: {
 			file: {
-				".pdf": Pyq.validator,
-				"*": (_) => false,
-			}
+				".pdf": () => true,
+				"*": () => true,
+			},
 		},
 	}),
 });
