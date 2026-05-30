@@ -15,6 +15,16 @@ const { bodyClass, ...props } = Astro.props;
 <html lang="en">
 	<head>
 		<Head {...props} />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-W8MTEVEX2B"></script>
+		<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
+
+  		gtag('config', 'G-W8MTEVEX2B');
+		</script>
+		<meta name="google-site-verification" content="uESZ9dE-I6BQDYXcko2FbdkriKb2VQY5VGwvvA4agL4" />
 	</head>
 	<body class:list={["min-h-screen", bodyClass]}>
 		<slot />
