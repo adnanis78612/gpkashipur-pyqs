@@ -2,9 +2,9 @@ import type { SiteConfig, Social } from "./types";
 
 const siteConfig: SiteConfig = {
 	site: {
-		title: "Government Polytechnic Kashipur PYQs",
+		title: "Government Polytechnic Kashipur Previous Year Question Papers (GP Kashipur PYQs)",
 		description:
-			"A collection of student contributed previous year question papers for Government Polytechnic Kashipur semester/year examinations.",
+			"Download Government Polytechnic Kashipur previous year question papers (PYQs) for Diploma Pharmacy, CSE, Mechanical, Civil, IT,Electronics, Chemical and other branches. Mid sem, end sem and back papers available free.",
 		url: "https://gpkashipur.in/pvqs",
 		githubRepo: "adnanis78612/gpkashipur-pyqs",
 		logo: "/logo.png",
@@ -29,7 +29,7 @@ const siteConfig: SiteConfig = {
 
 	footer: {
 		maintainer: {
-			name: "Mohd ADNAN",
+			name: "ADNAN",
 			designation: "Government Polytechnic Kashipur",
 		},
 

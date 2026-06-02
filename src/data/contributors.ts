@@ -6,7 +6,7 @@ type Contributor = {
 
 export const contributors: Contributor[] = [
 	{
-		name: "Mohd ADNAN",
+		name: "ADNAN",
 		course: "B.Tech CSE",
 		batch: "2026",
 	},

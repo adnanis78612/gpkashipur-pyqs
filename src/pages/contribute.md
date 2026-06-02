@@ -8,7 +8,9 @@ title: Contribute
 **NOTE: Please check if the question paper is already available on the website
 before submitting.**
 
-### From Polytechnic Kahipur?
+### From Polytechnic Kashipur?
+
+Help build the largest collection of Government Polytechnic Kashipur Previous Year Question Papers (PYQs) by contributing scanned question papers.
 
 Submit your question paper directly to me.
 
