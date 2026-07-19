@@ -72,21 +72,6 @@ Note:
 
 # Submit
 
-### Via social media
-
-Send me the pdf file on message.
-
-- [LinkedIn](https://linkedin.com/in/adnanis78612)
-- [Email](mailto:adnanis78612@gmail.com)
-
-### Via Github Issue
-
-[Github Repo](https://github.com/adnanis78612/gpkashipur-pyqs)
-
-Only do this if you are familiar with github.
-
-- Create a new issue.
-- Upload the file as attachment.
 
 ### Via Github PR
 
